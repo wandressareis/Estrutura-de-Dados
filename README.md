@@ -1,2 +1,2 @@
-# Aulas_Estruturas_de_Dados
+# Estruturas-de-Dados-II
 Códigos feitos em aula e em atividades 
