@@ -198,12 +198,23 @@ def levelOrder(root):
 
 # Main
 root = None
-root = insert(root, 1)
-root = insert(root, 2)
-root = insert(root, 3)
-root = insert(root, 4)
+# root = insert(root, 50)
+# root = insert(root, 30)
+# root = insert(root, 20)
+# root = insert(root, 70)
+# root = insert(root, 40)
+# root = insert(root, 35)
+# root = insert(root, 37)
+# root = insert(root, 38)
+# root = insert(root, 10)
+# root = insert(root, 32)
+# root = insert(root, 45)
+# root = insert(root, 42)
+# root = insert(root, 25)
+# root = insert(root, 47)
+# root = insert(root, 36)
 
-printTree(root)
+# printTree(root)
 # print('min: ', findMin(root).value)
 # print('max: ', findMax(root).value)
 # print('height: ', findHeight(root))
@@ -212,3 +223,9 @@ printTree(root)
 # print('------')
 # levelOrder(root)
 # printTree(root)
+
+nums = [41, 38, 31, 12, 19, 8, 27, 49]
+for i in nums:
+    root = insert(root, i)
+
+printTree(root)
