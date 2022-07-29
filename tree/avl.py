@@ -1,7 +1,7 @@
 import queue
 
 class Node:
-    def __init__(self, value=None):
+    def __init__(self, value = None):
         self.value = value
         self.left = None
         self.right = None
@@ -15,14 +15,14 @@ def insert(root, value):
             root.left = insert(root.left, value)
         elif value > root.value:
             root.right = insert(root.right, value)
+
     root.height = max(findHeight(root.left), findHeight(root.right)) + 1
 
     balanceFactor = getBalance(root)
-
     if (balanceFactor < -1):
       if (value > root.right.value): #Rotação simples Esquerda
         return leftRotate(root)
-      else: # Rotação Dupla Esquerda
+      else: # Rotação Dupla a Esquerda
         root.right = rightRotate(root.right)
         return leftRotate(root)
       if (balanceFactor > 1):
@@ -95,12 +95,6 @@ def preOrdem(root):
         preOrdem(root.left)
         preOrdem(root.right)
 
-def printTree(root, level=0):
-    if root is not None:
-        printTree(root.right, level+1)
-        print(' ' * 4 * level + '-> ' + str(root.value))
-        printTree(root.left, level+1)
-
 # FB = H(t.left) - H(t.right)
 
 def getHeight(root):
@@ -136,22 +130,41 @@ def findHeight(root):
 
 # Rotações
 
-def leftRotate(z):
-  y = z.right
-  z.right = y.left
-  y.left = z
-  z.height = findHeight(z)
-  y.height = findHeight(y)
-  return y
+# def leftRotate(z):
+#   y = z.right
+#   z.right = y.left
+#   y.left = z
+#   z.height = findHeight(z)
+#   y.height = findHeight(y)
+#   return y
 
-def rightRotate(z):
-  y = z.left
-  z.left = y.right
-  y.right = z
-  z.height = findHeight(z)
-  y.height = findHeight(y)
-  return y
+def leftRotate(root):
+    y = root.right 
+    root.right = y.left
+    y.left = root
 
+    root.height = findHeight(root)
+    y.height = findHeight(y)
+
+    return y
+
+# def rightRotate(z):
+#   y = z.left
+#   z.left = y.right
+#   y.right = z
+#   z.height = findHeight(z)
+#   y.height = findHeight(y)
+#   return y
+
+def rightRotate(root):
+    y = root.left
+    root.left = y.right
+    y.right = root
+
+    root.height = findHeight(root)
+    y.height = findHeight(y)
+
+    return y
 
 # Percurso em Level (BFS)
 q = queue.Queue()
@@ -195,6 +208,21 @@ def levelOrder(root):
         if current.right is not None:
             q.put(current.right)
         q.get()
+        
+
+# Função Print
+def printTree(root, level=0):
+    if root is not None:
+        printTree(root.right, level+1)
+        print(' ' * 4 * level + '-> ' + str(root.value))
+        printTree(root.left, level+1)
+
+# Print Function #
+# def printTree(root, level = 0):
+#     if root is not None: 
+#         printTree(root.right, level + 1)
+#         print(''*4*level + '->' + str(root.value))
+#         printTree(root.left, level + 1)
 
 # Main
 root = None
@@ -224,8 +252,11 @@ root = None
 # levelOrder(root)
 # printTree(root)
 
-nums = [41, 38, 31, 12, 19, 8, 27, 49]
-for i in nums:
-    root = insert(root, i)
+nums = [50, 30, 20, 70, 40, 35]
+for num in nums:
+    root = insert(root, num)
 
 printTree(root)
+# print()
+# inOrder(root)
+# print()
